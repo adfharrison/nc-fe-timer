@@ -1,25 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react'
+import SetTimer from './setTimer'
 
-function App() {
+class App extends React.Component {
+
+  state = {
+    initialTime: {
+      mins:0,
+      secs:0
+    },
+    timeRemaining: {
+      mins: 0,
+      secs: 0
+    },
+    timeOut: false
+  }
+
+  setTime = (mins, secs) => {
+    //updates initialTime with values from timeOptions
+    this.setState((currentState) => {
+      const newState = { initialTime: {...currentState.initialTime, mins: mins, secs: secs}}
+      console.log(newState)
+    return newState
+    })
+    
+  }
+
+  render () {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Timer</h1>
+      <SetTimer setTime={this.setTime}/>
     </div>
   );
+  }
 }
 
 export default App;
